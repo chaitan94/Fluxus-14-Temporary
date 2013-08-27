@@ -59,9 +59,11 @@
 .nl-form select  {
 	line-height: inherit;
 	display: inline-block;
-	color: #b14943;
 	cursor: pointer;
 	border-bottom: 1px dashed #b14943;
+}
+.nl-form input{
+	color:#6FC;
 }
 
 /* drop-down list / text element */
@@ -207,7 +209,7 @@ input:focus::-ms-input-placeholder {
 }
 
 .nl-ti-text ul li.nl-ti-example em {
-	color: #fff
+	color: #fff;
 }
 
 /* submit button */
