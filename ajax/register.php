@@ -10,9 +10,15 @@ if(isset($_POST['name'])&&isset($_POST['college'])&&isset($_POST['city'])&&isset
 	$mail = $_POST['mail'];
 	if($name&&$mail&&$college&&$city){
 		if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
-			$query = $db->prepare("INSERT INTO users(name, college, city, email) VALUES (?, ?, ?, ?)");
-			$query->execute(array($name, $college, $city, $mail));
-			echo "Registration Successful.";
+			$pquery = $db->prepare("SELECT id FROM users WHERE email=?");
+			$pquery->execute(array($mail));
+			if(!$pquery->rowCount()){
+				$query = $db->prepare("INSERT INTO users(name, college, city, email) VALUES (?, ?, ?, ?)");
+				$query->execute(array($name, $college, $city, $mail));
+				echo "Registration Successful.";
+			} else {
+				echo "Email already exists!";
+			}
 		} else {
 			echo "Invalid Email.";
 		}
